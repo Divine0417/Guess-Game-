@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guess Game</title>
+    <link rel="shortcut icon" href="original.webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <header>
+            <h1>Guess My Number!</h1>
+            <div class="number">?</div>
+        </header>
+        <main>
+            <p class="message" id="pTag">Start guessing...</p>
+            <p class="between">(Between 1 and 10)</p>
+            <input type="number" id="inputTag" class="guess">
+            <button onclick="guessCheck()" class="btn">Guess</button>
+            <p id="showScore">Score: 0</p>
+        </main>
+    </div>
+</body>
+
+</html>
+<script>
+    let inputTagOne = document.getElementById('inputTag');
+    let display = document.getElementById('pTag');
+    let showScore = document.getElementById('showScore');
+    let gameContainer = document.getElementById('gameContainer')
+    let currentScore = 0;
+
+    function guessCheck() {
+        const randomNumber = Math.ceil(Math.random() * 10);
+        let input = +inputTagOne.value;
+        let numberDisplay = document.querySelector('.number');
+
+        if (inputTagOne.value === '') {
+            display.innerHTML = 'Haba! Please input a number first nau 🥹';
+            return;
+        }
+
+        if (input > 10) {
+            display.innerHTML = 'Please input a number between 1️⃣-🔟';
+        }
+        else if (input === randomNumber) {
+            currentScore += 1;
+            display.innerHTML = `Amazing Guessing 🥰! </br>The number is ${randomNumber}, You WON 🏆!`;
+            showScore.innerHTML = `Score: ${currentScore}`;
+            
+            numberDisplay.textContent = randomNumber; 
+            gameContainer.style.backgroundColor = '#60b032';
+            inputTagOne.value = "";
+        }
+        else {
+            display.innerHTML = `Wrong ❌, the number is ${randomNumber}. Try again!`;
+            numberDisplay.textContent = randomNumber;
+
+            gameContainer.style.backgroundColor = '#222';
+            inputTagOne.value = "";
+        };
+    };
+</script>
