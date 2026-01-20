@@ -13,7 +13,7 @@
     <div id="gameContainer">
         <header>
             <h1>Guess My Number!</h1>
-            <div class="number">?</div>
+            <div class="number" id="number">?</div>
         </header>
         <main>
             <p class="message" id="pTag">Start guessing...</p>
@@ -36,14 +36,14 @@
     function guessCheck() {
         const randomNumber = Math.ceil(Math.random() * 10); 
         let input = +inputTagOne.value;
-        let numberDisplay = document.querySelector('.number');
+        let numberDisplay = document.getElementById('number');
 
         if (inputTagOne.value === '') {
             display.innerHTML = 'Haba! Please input a number first nau 🥹';
             return;
         }
 
-        if (input > 10) {
+        if (input < 1 || input > 10) {
             display.innerHTML = 'Please input a number between 1️⃣-🔟';
         }
         else if (input === randomNumber) {
